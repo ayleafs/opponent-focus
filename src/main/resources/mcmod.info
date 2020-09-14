@@ -1,0 +1,12 @@
+[
+  {
+    "modid": "opponentfocus",
+    "name": "Opponent Focus",
+    "description": "A chat mode that works on some servers that ",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "https://github.com/ayleafs/opponent-focus",
+    "updateUrl": "https://github.com/ayleafs/opponent-focus/releases",
+    "authorList": [ "leafs" ]
+  }
+]
