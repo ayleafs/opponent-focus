@@ -61,6 +61,6 @@ processResources {
 
 jar {
     manifest {
-        attributes "FMLCorePlugin": "me.leafs.opponentchat.asm.FMLLoadingPlugin", "ModSide": "CLIENT"
+        attributes "FMLCorePlugin": "me.leafs.opponentchat.asm.FMLLoadingPlugin", "FMLCorePluginContainsFMLMod": true, "ModSide": "CLIENT"
     }
 }

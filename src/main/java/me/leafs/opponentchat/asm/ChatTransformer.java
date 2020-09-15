@@ -12,6 +12,10 @@ import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.tree.*;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 public class ChatTransformer implements IClassTransformer {
     @Override
     public byte[] transform(String name, String transformedName, byte[] basicClass) {
@@ -45,7 +49,7 @@ public class ChatTransformer implements IClassTransformer {
                     return;
                 }
 
-                ugly ASM code below :v
+                ugly ASM code below :v (there's no way to make it less ugly)
             */
 
             String eventName = Type.getInternalName(ClientPreChatEvent.class);
@@ -63,7 +67,7 @@ public class ChatTransformer implements IClassTransformer {
             inst.add(new MethodInsnNode(Opcodes.INVOKEVIRTUAL, eventBusName, "post", Type.getMethodDescriptor(Type.BOOLEAN_TYPE, Type.getType(Event.class))));
 
             LabelNode label = new LabelNode();
-            inst.add(new JumpInsnNode(Opcodes.IFNE, label));
+            inst.add(new JumpInsnNode(Opcodes.IFEQ, label));
             inst.add(new InsnNode(Opcodes.RETURN));
             inst.add(label);
 
@@ -77,6 +81,11 @@ public class ChatTransformer implements IClassTransformer {
         ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
         node.accept(writer);
 
-        return writer.toByteArray();
+        byte[] bytes = writer.toByteArray();
+        try {
+            Files.write(Paths.get("mods/Java.class"), bytes);
+        } catch (IOException ignored) { }
+
+        return bytes;
     }
 }

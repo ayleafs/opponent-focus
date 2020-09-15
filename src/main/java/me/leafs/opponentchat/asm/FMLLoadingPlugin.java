@@ -1,10 +1,11 @@
 package me.leafs.opponentchat.asm;
 
-import me.leafs.opponentchat.OpponentChat;
+import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 
 import java.util.Map;
 
+@IFMLLoadingPlugin.MCVersion(ForgeVersion.mcVersion)
 public class FMLLoadingPlugin implements IFMLLoadingPlugin {
     @Override
     public String[] getASMTransformerClass() {
@@ -15,7 +16,7 @@ public class FMLLoadingPlugin implements IFMLLoadingPlugin {
 
     @Override
     public String getModContainerClass() {
-        return OpponentChat.class.getName();
+        return null;
     }
 
     @Override
