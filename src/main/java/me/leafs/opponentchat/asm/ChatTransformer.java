@@ -81,11 +81,6 @@ public class ChatTransformer implements IClassTransformer {
         ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
         node.accept(writer);
 
-        byte[] bytes = writer.toByteArray();
-        try {
-            Files.write(Paths.get("mods/Java.class"), bytes);
-        } catch (IOException ignored) { }
-
-        return bytes;
+        return writer.toByteArray();
     }
 }
